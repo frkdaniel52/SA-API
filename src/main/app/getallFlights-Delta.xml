@@ -16,7 +16,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 %output application/json
 %namespace ns0 http://soap.training.mulesoft.com/
 ---
-flight :payload.ns0#listAllFlightsResponse.*return map ((return , indexOfReturn) -> {
+flights :payload.ns0#listAllFlightsResponse.*return map ((return , indexOfReturn) -> {
 	airline: return.airlineName,
 	code: return.code,
 	date: return.departureDate,
