@@ -7,11 +7,9 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
 
-    <apikit:config name="comp-API-config" raml="comp-API.raml" consoleEnabled="false" doc:name="Router" keepRamlBaseUri="false">
-        <apikit:flow-mapping resource="/getAllFlights" action="get" flow-ref="getAllFlow"/>
-    </apikit:config>
 
-    <flow name="getAllFlow">
+
+    <flow name="deltaAllFlow">
         <ws:consumer config-ref="Web_Service_Consumer" operation="listAllFlights" doc:name="Web Service Consumer"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="c8b1b719-6159-4c06-be2f-2bb35712af0d">
             <dw:set-payload><![CDATA[%dw 1.0
