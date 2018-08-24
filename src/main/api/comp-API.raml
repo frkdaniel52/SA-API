@@ -3,7 +3,6 @@ version: v1
 title: simpleapi
 types:
   flight: !include datatypes/Flight.raml
- 
 /flight:  
   /delta:
     get:
@@ -20,8 +19,7 @@ types:
                 { 
                   "success":true, 
                   "message": "Succesful" 
-                 }
-                
+                 }               
         400:
           body:
             application/json:
@@ -45,47 +43,8 @@ types:
                 {
                   "success": false,
                   "message": "Server error"
-                }
-  /united:
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              example:  |
-                { 
-                  "success":true, 
-                  "message": "Succesful" 
-                 }
-                
-        400:
-          body:
-            application/json:
-              example:  |
-                { 
-                  "success": false, 
-                  "message": "Bad request - The server cannot process the request due to a client error" 
-                }
-        404:
-          body:
-            application/json:
-               example: |
-                {
-                  "success": false,
-                  "message": "Resource not found-URI no recoginized by the server"
-                }
-                        
-        500:
-          body:
-            application/json:
-               example: |
-                {
-                  "success": false,
-                  "message": "Server error"
-                }
-   
- 
-/getAllFlightsREST:
+                } 
+/deltaByDestination:
   get:
     responses:
       200:
@@ -95,8 +54,7 @@ types:
               { 
                 "success":true, 
                 "message": "Succesful" 
-               }
-              
+               }             
       400:
         body:
           application/json:
@@ -112,8 +70,7 @@ types:
               {
                 "success": false,
                 "message": "Resource not found-URI no recoginized by the server"
-              }
-                      
+              }                      
       500:
         body:
           application/json:
@@ -122,3 +79,38 @@ types:
                 "success": false,
                 "message": "Server error"
               }
+  /united:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:  |
+                { 
+                  "success":true, 
+                  "message": "Succesful" 
+                 }               
+        400:
+          body:
+            application/json:
+              example:  |
+                { 
+                  "success": false, 
+                  "message": "Bad request - The server cannot process the request due to a client error" 
+                }
+        404:
+          body:
+            application/json:
+               example: |
+                {
+                  "success": false,
+                  "message": "Resource not found-URI no recoginized by the server"
+                }                       
+        500:
+          body:
+            application/json:
+               example: |
+                {
+                  "success": false,
+                  "message": "Server error"
+                }
