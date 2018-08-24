@@ -1,0 +1,84 @@
+#%RAML 1.0
+version: v1
+title: simpleapi
+
+/getFlights:
+  get:
+    queryParameters:
+      destination:
+        type: string
+        required: false
+        displayName: 
+    responses:
+      200:
+        body:
+          application/json:
+            example:  |
+              { 
+                "success":true, 
+                "message": "Succesful" 
+               }
+              
+      400:
+        body:
+          application/json:
+            example:  |
+              { 
+                "success": false, 
+                "message": "Bad request - The server cannot process the request due to a client error" 
+              }
+      404:
+        body:
+          application/json:
+             example: |
+              {
+                "success": false,
+                "message": "Not found"
+              }
+      500:
+        body:
+          application/json:
+             example: |
+              {
+                "success": false,
+                "message": "Server error"
+              }
+              
+          
+/getAllFlights:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:  |
+              { 
+                "success":true, 
+                "message": "Succesful" 
+               }
+              
+      400:
+        body:
+          application/json:
+            example:  |
+              { 
+                "success": false, 
+                "message": "Bad request - The server cannot process the request due to a client error" 
+              }
+      404:
+        body:
+          application/json:
+             example:
+              {
+                "success": false,
+                "message": "Resource not found-URI no recoginized by the server"
+              }
+                      
+      500:
+        body:
+          application/json:
+             example: |
+              {
+                "success": false,
+                "message": "Server error"
+              }
