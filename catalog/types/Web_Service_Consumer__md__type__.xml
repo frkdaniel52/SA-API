@@ -25,7 +25,16 @@
               </typeQName>
             </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
             <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
-              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey">
+                <id>findFlight</id>
+                <displayName>findFlight</displayName>
+                <category>DEFAULT</category>
+                <metaDataKeyPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+                  </properties>
+                </metaDataKeyPropertiesManager>
+              </metaDataKey>
               <derivedStructure>false</derivedStructure>
               <generatedStructure>false</generatedStructure>
             </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
@@ -153,7 +162,16 @@
               </typeQName>
             </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
             <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
-              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey">
+                <id>findFlightResponse</id>
+                <displayName>findFlightResponse</displayName>
+                <category>DEFAULT</category>
+                <metaDataKeyPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+                  </properties>
+                </metaDataKeyPropertiesManager>
+              </metaDataKey>
               <derivedStructure>false</derivedStructure>
               <generatedStructure>false</generatedStructure>
             </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
@@ -513,7 +531,16 @@
               </typeQName>
             </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
             <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
-              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey">
+                <id>listAllFlights</id>
+                <displayName>listAllFlights</displayName>
+                <category>DEFAULT</category>
+                <metaDataKeyPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+                  </properties>
+                </metaDataKeyPropertiesManager>
+              </metaDataKey>
               <derivedStructure>false</derivedStructure>
               <generatedStructure>false</generatedStructure>
             </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
@@ -575,7 +602,7 @@
 &lt;/xs:schema&gt;</string>
           </schemas>
           <encoding reference="../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
-          <baseUri>file:/C:/Windows/system32/http:/mu.mulesoft-training.com/essentials/delta%3Fwsdl</baseUri>
+          <baseUri>file:/C:/AnyPoint6.5/AnypointStudio/http:/mu.mulesoft-training.com/essentials/delta%3Fwsdl</baseUri>
         </schemas>
         <namespaceManager>
           <namespacePrefix class="tree-map">
@@ -611,7 +638,16 @@
               </typeQName>
             </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
             <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
-              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey">
+                <id>listAllFlightsResponse</id>
+                <displayName>listAllFlightsResponse</displayName>
+                <category>DEFAULT</category>
+                <metaDataKeyPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+                  </properties>
+                </metaDataKeyPropertiesManager>
+              </metaDataKey>
               <derivedStructure>false</derivedStructure>
               <generatedStructure>false</generatedStructure>
             </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
@@ -911,7 +947,7 @@
 &lt;/xs:schema&gt;</string>
                   </schemas>
                   <encoding reference="../../../../../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
-                  <baseUri>file:/C:/Windows/system32/http:/mu.mulesoft-training.com/essentials/delta%3Fwsdl</baseUri>
+                  <baseUri>file:/C:/AnyPoint6.5/AnypointStudio/http:/mu.mulesoft-training.com/essentials/delta%3Fwsdl</baseUri>
                 </schemas>
                 <namespaceManager>
                   <namespacePrefix class="tree-map">
@@ -946,7 +982,7 @@
         <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
           <schemas reference="../../fields/org.mule.common.metadata.DefaultMetaDataField/model/model/schemas/schemas"/>
           <encoding reference="../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
-          <baseUri>file:/C:/Windows/system32/http:/mu.mulesoft-training.com/essentials/delta%3Fwsdl</baseUri>
+          <baseUri>file:/C:/AnyPoint6.5/AnypointStudio/http:/mu.mulesoft-training.com/essentials/delta%3Fwsdl</baseUri>
         </schemas>
         <namespaceManager reference="../fields/org.mule.common.metadata.DefaultMetaDataField/model/model/namespaceManager"/>
       </org.mule.common.metadata.DefaultXmlMetaDataModel>

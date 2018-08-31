@@ -7,18 +7,16 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
 
-    <apikit:config name="comp-API-config" raml="comp-API.raml" consoleEnabled="false" doc:name="Router" keepRamlBaseUri="false">
-        <apikit:flow-mapping resource="/getAllFlights" action="get" flow-ref="getAllFlow"/>
-    </apikit:config>
 
-    <flow name="getAllFlow">
+
+    <flow name="deltaAllFlow">
         <ws:consumer config-ref="Web_Service_Consumer" operation="listAllFlights" doc:name="Web Service Consumer"/>
-        <dw:transform-message doc:name="Transform Message" metadata:id="c8b1b719-6159-4c06-be2f-2bb35712af0d">
+        <dw:transform-message doc:name="Transform Message" metadata:id="5301e181-22ee-49b0-8553-d7949b7c8e02">
             <dw:set-payload><![CDATA[%dw 1.0
 %output application/json
 %namespace ns0 http://soap.training.mulesoft.com/
 ---
-flight :payload.ns0#listAllFlightsResponse.*return map ((return , indexOfReturn) -> {
+payload.ns0#listAllFlightsResponse.*return map ((return , indexOfReturn) -> {
 	airline: return.airlineName,
 	code: return.code,
 	date: return.departureDate,
@@ -29,6 +27,7 @@ flight :payload.ns0#listAllFlightsResponse.*return map ((return , indexOfReturn)
 	price: return.price as :string
 })]]></dw:set-payload>
         </dw:transform-message>
+
 
         <logger message="#[payload]  FLOWNAMEALL: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  " level="INFO" doc:name="Logger"/>
 

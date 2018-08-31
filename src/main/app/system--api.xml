@@ -7,7 +7,10 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
 
-    <apikit:config name="comp-API-confi" raml="comp-API.raml" consoleEnabled="false" doc:name="Router" keepRamlBaseUri="false">
+    <apikit:config name="comp-API-confi" raml="comp-API.raml" consoleEnabled="true" doc:name="Router" keepRamlBaseUri="false">
+        <apikit:flow-mapping resource="/delta" action="get" flow-ref="deltaAllFlow"/>
+        <apikit:flow-mapping resource="/deltaByDestination" action="get" flow-ref="flowDeltaByDestination"/>
+        <apikit:flow-mapping resource="/united" action="get" flow-ref="unitedFlightsFlow"/>
     </apikit:config>
     <flow name="comp-API-main">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/system/*" doc:name="HTTP" allowedMethods="GET"/>
@@ -15,7 +18,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         <exception-strategy ref="comp-API-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>
 
-    <flow name="getFlightsFlow">
+    <flow name="flowDeltaByDestination">
         <set-variable variableName="destination" value="#[message.inboundProperties.'http.query.params'.destination]" doc:name="Variable"/>
         <dw:transform-message doc:name="Transform Message">
             <dw:set-payload><![CDATA[%dw 1.0
@@ -30,29 +33,9 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         </dw:transform-message>
         <ws:consumer config-ref="Web_Service_Consumer" operation="findFlight" doc:name="Web Service Consumer"/>
         <dw:transform-message doc:name="Transform Message">
-            <dw:input-payload doc:sample="sample_data\findFlightResponse.xml"/>
-            <dw:set-payload><![CDATA[%dw 1.0
-%output application/java
-%namespace ns0 http://soap.training.mulesoft.com/
----
-flights: payload.ns0#findFlightResponse.*return map {
-	flight :{
-	airline: $.airlineName,
-	code: $.code,
-	date: $.departureDate,
-	dest: $.destination,
-	seats: $.emptySeats,
-	origin: $.origin,
-	plane: $.planeType,
-	price: $.price
-}}]]></dw:set-payload>
+            <dw:set-payload resource="classpath:output/ejemplo.dwl"/>
         </dw:transform-message>
-        <dw:transform-message doc:name="Transform Message">
-            <dw:set-payload><![CDATA[%dw 1.0
-%output application/json
----
-payload]]></dw:set-payload>
-        </dw:transform-message>
+
         <logger message="FLOWNAME: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  " level="INFO" doc:name="Logger"/>
 
     </flow>
