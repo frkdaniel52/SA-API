@@ -33,29 +33,9 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         </dw:transform-message>
         <ws:consumer config-ref="Web_Service_Consumer" operation="findFlight" doc:name="Web Service Consumer"/>
         <dw:transform-message doc:name="Transform Message">
-            <dw:input-payload doc:sample="sample_data\findFlightResponse.xml"/>
-            <dw:set-payload><![CDATA[%dw 1.0
-%output application/java
-%namespace ns0 http://soap.training.mulesoft.com/
----
-flights: payload.ns0#findFlightResponse.*return map {
-	flight :{
-	airline: $.airlineName,
-	code: $.code,
-	date: $.departureDate,
-	dest: $.destination,
-	seats: $.emptySeats,
-	origin: $.origin,
-	plane: $.planeType,
-	price: $.price
-}}]]></dw:set-payload>
+            <dw:set-payload resource="classpath:output/ejemplo.dwl"/>
         </dw:transform-message>
-        <dw:transform-message doc:name="Transform Message">
-            <dw:set-payload><![CDATA[%dw 1.0
-%output application/json
----
-payload]]></dw:set-payload>
-        </dw:transform-message>
+
         <logger message="FLOWNAME: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  " level="INFO" doc:name="Logger"/>
 
     </flow>
