@@ -12,20 +12,9 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     <flow name="unitedFlightsFlow">
         <http:request config-ref="HTTP_Request_Configuration1" path="${request.base}" method="GET" doc:name="HTTP" metadata:id="84f0acc0-0eed-4ee1-b06d-adeb8c9d47c8"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="ab0d5205-0354-4546-813c-ec8c7198c6b2">
-            <dw:set-payload><![CDATA[%dw 1.0
-%output application/json
----
-payload.flights map ((flight , indexOfFlight) -> {
-	airline: flight.airlineName,
-	code: flight.code,
-	date: flight.departureDate,
-	destination: flight.destination,
-	seats: flight.emptySeats as :string,
-	origin: flight.origin,
-	plane: flight.planeType,
-	price: flight.price as :string
-})]]></dw:set-payload>
+            <dw:set-payload resource="classpath:output/flights.dwl"/>
+
         </dw:transform-message>
-        <logger level="INFO" doc:name="Logger"/>
+        <logger level="INFO" doc:name="Logger" message="FLOWNAME: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  "/>
     </flow>
 </mule>
