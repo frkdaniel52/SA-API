@@ -15,6 +15,6 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
             <dw:set-payload resource="classpath:output/flights.dwl"/>
 
         </dw:transform-message>
-        <logger level="INFO" doc:name="Logger" message="FLOWNAME: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  "/>
+        <logger level="INFO" doc:name="Logger" message="FLOWNAME: #[flow.name]  FECHA &amp; HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  "/>
     </flow>
 </mule>
