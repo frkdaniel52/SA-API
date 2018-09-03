@@ -21,18 +21,18 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 ---
 payload]]></dw:set-payload>
             </dw:transform-message>
-            <logger message="DATETIME F #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')] " level="INFO" doc:name="Logger"/>
+            <logger message="FLOWNAME: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  " level="INFO" doc:name="Logger"/>
         </catch-exception-strategy>
         <catch-exception-strategy when="#[exception.causeMatches('com.mulesoft.weave.*')]" doc:name="No flights &#8211; DW exception">
             <set-payload value="NO hay vuelos para #[flowVars.destination + '\n' + exception]" doc:name="Set Payload"/>
             <set-property propertyName="http.status" value="400" doc:name="Property"/>
             <json:object-to-json-transformer doc:name="Object to JSON"/>
-            <logger level="INFO" doc:name="Logger"/>
+            <logger level="INFO" doc:name="Logger" message="FLOWNAME: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  "/>
         </catch-exception-strategy>
         <catch-exception-strategy doc:name="Copy_of_Data unavailable &#8211; all other exceptions.">
             <set-payload value="DATA IS UNAVAILABLE. TRY LATER. #['\n' + exception]" doc:name="Set Payload"/>
             <set-property propertyName="http.status" value="500" doc:name="Property"/>
-            <logger level="INFO" doc:name="Logger"/>
+            <logger level="INFO" doc:name="Logger" message="FLOWNAME: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  "/>
         </catch-exception-strategy>
     </choice-exception-strategy>
 </mule>

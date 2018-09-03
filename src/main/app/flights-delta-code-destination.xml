@@ -8,9 +8,10 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
 
     <apikit:config name="comp-API-confi" raml="comp-API.raml" consoleEnabled="true" doc:name="Router" keepRamlBaseUri="false">
-        <apikit:flow-mapping resource="/delta" action="get" flow-ref="deltaAllFlow"/>
-        <apikit:flow-mapping resource="/deltaByDestination" action="get" flow-ref="flowDeltaByDestination"/>
-        <apikit:flow-mapping resource="/united" action="get" flow-ref="unitedFlightsFlow"/>
+        <apikit:flow-mapping resource="/flights/delta" action="get" flow-ref="/flights/delta"/>
+        <apikit:flow-mapping resource="/flights/destination-code" action="get" flow-ref="/flights/destination-code"/>
+        <apikit:flow-mapping resource="/flights/united" action="get" flow-ref="/fights/united"/>
+
     </apikit:config>
     <flow name="comp-API-main">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/system/*" doc:name="HTTP" allowedMethods="GET"/>
@@ -18,7 +19,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         <exception-strategy ref="comp-API-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>
 
-    <flow name="flowDeltaByDestination">
+    <flow name="/flights/destination-code">
         <set-variable variableName="destination" value="#[message.inboundProperties.'http.query.params'.destination]" doc:name="Variable"/>
         <dw:transform-message doc:name="Transform Message">
             <dw:set-payload><![CDATA[%dw 1.0
@@ -38,8 +39,8 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 %output application/java
 %namespace ns0 http://soap.training.mulesoft.com/
 ---
-flights: payload.ns0#findFlightResponse.*return map {
-	flight :{
+ flights: payload.ns0#findFlightResponse.*return map {
+	
 	airline: $.airlineName,
 	code: $.code,
 	date: $.departureDate,
@@ -48,7 +49,7 @@ flights: payload.ns0#findFlightResponse.*return map {
 	origin: $.origin,
 	plane: $.planeType,
 	price: $.price
-}}]]></dw:set-payload>
+}]]></dw:set-payload>
         </dw:transform-message>
         <dw:transform-message doc:name="Transform Message">
             <dw:set-payload><![CDATA[%dw 1.0

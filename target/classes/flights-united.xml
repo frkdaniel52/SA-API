@@ -9,9 +9,9 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
     <http:request-config name="HTTP_Request_Configuration1" host="${request.host}" port="${request.port}"  doc:name="HTTP Request Configuration"/>
-    <flow name="unitedFlightsFlow">
+    <flow name="/fights/united">
         <http:request config-ref="HTTP_Request_Configuration1" path="${request.base}" method="GET" doc:name="HTTP" metadata:id="84f0acc0-0eed-4ee1-b06d-adeb8c9d47c8"/>
-        <dw:transform-message doc:name="Transform Message" metadata:id="ab0d5205-0354-4546-813c-ec8c7198c6b2">
+        <dw:transform-message doc:name="Transform Message" metadata:id="96c1f2a8-b73e-4955-ba5b-d92c775c0c4c">
             <dw:set-payload><![CDATA[%dw 1.0
 %output application/json
 ---
@@ -26,6 +26,7 @@ payload.flights map ((flight , indexOfFlight) -> {
 	price: flight.price as :string
 })]]></dw:set-payload>
         </dw:transform-message>
-        <logger level="INFO" doc:name="Logger"/>
+
+        <logger level="INFO" doc:name="Logger" message="FLOWNAME: #[flow.name]  FECHA &amp; HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  "/>
     </flow>
 </mule>
