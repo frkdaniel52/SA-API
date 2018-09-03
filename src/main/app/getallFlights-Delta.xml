@@ -28,7 +28,7 @@ flights :payload.ns0#listAllFlightsResponse.*return map ((return , indexOfReturn
 })]]></dw:set-payload>
         </dw:transform-message>
 
-        <logger message="#[payload]  FLOWNAMEALL: #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  " level="INFO" doc:name="Logger"/>
+        <logger message="#[payload]  FLOWNAME : #[flow.name]  FECHA y HORA   #[server.dateTime.format('yyyy-MM-dd HH:mm:ss')]  " level="INFO" doc:name="Logger"/>
 
     </flow>
 
